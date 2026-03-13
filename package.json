@@ -1,0 +1,14 @@
+{
+  "name": "aibuilderblog",
+  "version": "1.0.0",
+  "description": "AI Builder Blog — AI, energy, tech, and the future of building",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "watch": "eleventy --watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

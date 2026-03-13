@@ -1,0 +1,70 @@
+---
+layout: base.njk
+title: Writing
+pagination:
+  data: collections.posts
+  size: 10
+  alias: posts
+permalink: "blog/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+
+<div style="margin-bottom: 2.5rem;">
+  <h1 style="font-size: 1.75rem; font-weight: 800; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.5rem;">Writing</h1>
+  <p style="color: var(--muted);">
+    {{ collections.posts.length }} post{% if collections.posts.length != 1 %}s{% endif %} on AI, energy, software, and the future of building.
+  </p>
+</div>
+
+{% if posts.length > 0 %}
+  <ul class="post-list">
+    {% for post in posts %}
+      <li class="post-list-item">
+        <a href="{{ post.url }}" style="color: inherit;">
+          <div class="post-list-title">{{ post.data.title }}</div>
+          {% if post.data.description %}
+            <div class="post-list-excerpt">{{ post.data.description }}</div>
+          {% endif %}
+          {% if post.data.tags %}
+            <div class="post-tags" style="margin-top: 0.5rem;">
+              {% for tag in post.data.tags %}
+                {% if tag != "posts" %}
+                  <span class="tag">{{ tag }}</span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </a>
+        <div class="post-list-date">
+          <time datetime="{{ post.date }}">{{ post.date | dateFormat }}</time>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p style="color: var(--muted);">No posts yet.</p>
+{% endif %}
+
+{% if pagination.pages.length > 1 %}
+  <nav class="pagination" aria-label="Pagination">
+    {% if pagination.href.previous %}
+      <a href="{{ pagination.href.previous }}">&larr; Newer</a>
+    {% else %}
+      <span class="disabled">&larr; Newer</span>
+    {% endif %}
+
+    {% for pageEntry in pagination.pages %}
+      {% set pageNum = loop.index %}
+      {% if loop.index == pagination.pageNumber + 1 %}
+        <span class="current">{{ pageNum }}</span>
+      {% else %}
+        <a href="{{ pagination.hrefs[loop.index0] }}">{{ pageNum }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if pagination.href.next %}
+      <a href="{{ pagination.href.next }}">Older &rarr;</a>
+    {% else %}
+      <span class="disabled">Older &rarr;</span>
+    {% endif %}
+  </nav>
+{% endif %}

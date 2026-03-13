@@ -1,0 +1,32 @@
+---
+layout: base.njk
+---
+
+<article class="post-wrap">
+
+  <a href="/blog/" class="back-link">
+    &#8592; All posts
+  </a>
+
+  <header class="post-header">
+    <div class="post-header-meta">
+      <time datetime="{{ page.date }}">{{ page.date | dateFormat }}</time>
+      {% if tags %}
+        {% for tag in tags %}
+          {% if tag != "posts" %}
+            <span class="tag">{{ tag }}</span>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <h1>{{ title }}</h1>
+    {% if description %}
+      <p class="post-header-desc">{{ description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+
+</article>

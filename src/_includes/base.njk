@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if title %}{{ title }} — AI Builder Blog{% else %}AI Builder Blog{% endif %}</title>
+  <meta name="description" content="{% if description %}{{ description }}{% else %}Long-form writing on AI, energy, technology, and the future of building.{% endif %}" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">AI <span>Builder</span> Blog</a>
+      <nav>
+        <a href="/blog/" {% if page.url.startsWith('/blog/') %}class="active"{% endif %}>Writing</a>
+        <a href="/#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ page.date | dateFormat if page.date else "2026" }} AI Builder Blog &middot; AI, energy, tech, and the future of building.</p>
+  </footer>
+
+</body>
+</html>

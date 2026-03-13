@@ -1,0 +1,65 @@
+---
+layout: base.njk
+title: Home
+---
+
+<section class="hero">
+  <p class="hero-eyebrow">AI Builder Blog</p>
+  <h1>Building at the edge of AI, energy, and technology.</h1>
+  <p class="hero-sub">
+    Long-form writing on AI systems, software development, energy technology,
+    and what it means to build in an era of rapid change.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">AI</span>
+    <span class="tag">Energy</span>
+    <span class="tag">Software</span>
+    <span class="tag">Future Tech</span>
+    <span class="tag">Programming</span>
+  </div>
+</section>
+
+{% if collections.posts.length > 0 %}
+  <p class="section-label">Recent Writing</p>
+  <div class="post-grid">
+    {% for post in collections.posts | limit(6) %}
+      <a href="{{ post.url }}" class="post-card">
+        <div class="post-card-meta">
+          <time datetime="{{ post.date }}">{{ post.date | dateFormat }}</time>
+          {% if post.data.tags %}
+            {% for tag in post.data.tags %}
+              {% if tag != "posts" %}
+                <span class="tag">{{ tag }}</span>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="post-card-title">{{ post.data.title }}</div>
+        {% if post.data.description %}
+          <div class="post-card-excerpt">{{ post.data.description }}</div>
+        {% else %}
+          <div class="post-card-excerpt">{{ post.content | excerpt(40) }}</div>
+        {% endif %}
+        <div class="post-card-footer">Read &rarr;</div>
+      </a>
+    {% endfor %}
+  </div>
+
+  {% if collections.posts.length > 6 %}
+    <p style="text-align:center; margin-top: 1rem;">
+      <a href="/blog/" style="color: var(--accent-hi); font-weight: 600;">View all posts &rarr;</a>
+    </p>
+  {% endif %}
+
+{% else %}
+  <p style="color: var(--muted); margin-top: 2rem;">Posts coming soon.</p>
+{% endif %}
+
+<section id="about" style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); max-width: 640px;">
+  <p class="section-label">About</p>
+  <p style="color: var(--muted); line-height: 1.8;">
+    AI Builder Blog is a space for long-form thinking about artificial intelligence,
+    software engineering, energy systems, and the evolving craft of building technology.
+    Written by a builder, for builders.
+  </p>
+</section>
