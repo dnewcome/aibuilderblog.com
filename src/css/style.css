@@ -459,6 +459,13 @@ nav a:hover, nav a.active { color: var(--text); text-decoration: none; }
   margin-top: 1rem;
 }
 
+/* ── Giscus comments ───────────────────────────────────────── */
+.giscus-wrap {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .post-grid { grid-template-columns: 1fr; }
